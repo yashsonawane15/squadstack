@@ -1,14 +1,11 @@
 package org.squadstack.DAO;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.util.Iterator;
 import java.util.Scanner;
 
 
-public class FileInput implements Iterator {
+public class FileInput {
 
     BufferedReader bufferedReader;
 
@@ -17,14 +14,11 @@ public class FileInput implements Iterator {
         bufferedReader = new BufferedReader(fileReader);
     }
 
-
-    @Override
-    public boolean hasNext() {
-        return false;
-    }
-
-    @Override
-    public Object next() {
-        return null;
+    public String next() {
+        try {
+            return bufferedReader.readLine();
+        } catch(IOException ioe) {
+            return null;
+        }
     }
 }
