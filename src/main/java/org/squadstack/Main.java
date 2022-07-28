@@ -2,12 +2,10 @@ package org.squadstack;
 
 import org.squadstack.DAO.FileInput;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 
 public class Main {
-    ParkingLot parkingLot;
+    ParkingLotController parkingLot;
     public static void main(String[] args) {
 
         String inputFileName = "";
