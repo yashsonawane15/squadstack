@@ -1,9 +1,8 @@
 package org.squadstack;
 
-import org.squadstack.command.CreateCommand;
-import org.squadstack.command.ParkCommand;
 import org.squadstack.model.ParkedCar;
 
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class ParkingLot {
@@ -36,7 +35,7 @@ public class ParkingLot {
             ageToSlots.get(driverAge).add(slot);
         } else {
             HashSet<Integer> set = new HashSet<Integer>();
-            set.add(driverAge);
+            set.add(slot);
 
             ageToSlots.put(driverAge, set);
         }
@@ -47,11 +46,11 @@ public class ParkingLot {
         String carNumber = car.getCarNumber();
 
         if(carNumberToSlot.containsKey(carNumber)) {
-            return true;
+            return false;
         }
 
         carNumberToSlot.put(carNumber, slot);
-        return false;
+        return true;
     }
 
     public String parkCar(int driverAge, String carNumber) {
@@ -63,12 +62,12 @@ public class ParkingLot {
 
         ParkedCar newCar = new ParkedCar(carNumber, driverAge);
 
-        slots.set(closestSlot, newCar);
-
-        addCarToAgeData(closestSlot, newCar);
         if(!addCarToCarNumberData(closestSlot, newCar)) {
+            System.out.println(slots);
             return "Duplicate car number detected: " + carNumber;
         }
+        addCarToAgeData(closestSlot, newCar);
+        slots.set(closestSlot, newCar);
 
         return "Car with registration number \"" + carNumber + "\" has been parked at slot number " + (closestSlot + 1);
 
@@ -114,13 +113,58 @@ public class ParkingLot {
 
         Iterator<Integer> iterator = slotsOfAge.iterator();
 
-        String slotsString = getCommaSeparatedValues(iterator, slotsOfAge.size());
+        String slotsString = getCommaSeparatedNumbers(iterator, slotsOfAge.size());
         result.append(slotsString);
 
         return result.toString();
     }
 
-    private String getCommaSeparatedValues(Iterator<Integer> iterator, int size) {
+
+
+    public String getSlotByCarNumber(String queryCarNumber) {
+        Integer carSlot = carNumberToSlot.get(queryCarNumber);
+
+        if(carSlot == null) {
+            return "No car with number " + queryCarNumber + " in the parking lot";
+        }
+
+        return "Car with number " + queryCarNumber + " is in slot " + (carSlot+1);
+    }
+
+    public String getCarNumbersByAge(int queryAge) {
+        Set<Integer> querySlots = ageToSlots.get(queryAge);
+        StringBuilder result = new StringBuilder();
+
+        result.append("Car Numbers with drivers of age " + queryAge + ": ");
+
+        if(querySlots == null || querySlots.size() == 0) {
+            return "No cars present with a driver of age " + queryAge;
+        }
+
+        ArrayList<String> carNumbers = getCarNumbersFromSlots(querySlots);
+
+        String carNumbersString = getCommaSeparatedStrings(carNumbers.iterator(), querySlots.size());
+
+        result.append(carNumbersString);
+
+        return result.toString();
+    }
+
+    private ArrayList<String> getCarNumbersFromSlots(Set<Integer> querySlots) {
+
+        ParkedCar car;
+        ArrayList<String> carNumbers = new ArrayList<String>();
+        Iterator<Integer> iterator = querySlots.iterator();
+        while(iterator.hasNext()) {
+            Integer tmp = iterator.next();
+            car = slots.get(tmp);
+            carNumbers.add(car.getCarNumber());
+        }
+
+        return carNumbers;
+    }
+
+    private String getCommaSeparatedNumbers(Iterator<Integer> iterator, int size) {
 
         int count = 0;
         StringBuilder string = new StringBuilder();
@@ -130,8 +174,25 @@ public class ParkingLot {
             string.append(Integer.toString(iterator.next() + 1) + ", ");
         }
 
-        string.append(Integer.toString(iterator.next()));
+        string.append(Integer.toString(iterator.next() + 1));
 
         return string.toString();
     }
+
+    private String getCommaSeparatedStrings(Iterator<String> iterator, int size) {
+
+        int count = 0;
+        StringBuilder string = new StringBuilder();
+
+        while(count < size - 1) {
+            ++count;
+            string.append(iterator.next() + ", ");
+        }
+
+        string.append(iterator.next());
+
+        return string.toString();
+    }
+
+
 }

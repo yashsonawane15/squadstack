@@ -5,14 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="76e1d407-a315-4f27-a598-c6eaca679873" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/input.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/squadstack/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/squadstack/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/input.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/squadstack/ParkingLot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/squadstack/ParkingLot.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/squadstack/ParkingLotController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/squadstack/ParkingLotController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/squadstack/command/GetSlotsByAgeCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/squadstack/command/GetSlotsByAgeCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/squadstack/command/LeaveCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/squadstack/command/LeaveCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/squadstack/model/ParkedCar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/squadstack/model/ParkedCar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/squadstack/command/GetNumbersByAgeCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/squadstack/command/GetNumbersByAgeCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/squadstack/command/GetSlotByCarNumber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/squadstack/command/GetSlotByCarNumberCommand.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

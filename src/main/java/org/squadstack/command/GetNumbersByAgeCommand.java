@@ -19,4 +19,8 @@ public class GetNumbersByAgeCommand implements Command {
         }
         return true;
     }
+
+    public int getQueryAge() {
+        return queryAge;
+    }
 }
