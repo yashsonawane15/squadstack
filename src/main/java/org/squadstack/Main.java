@@ -16,8 +16,12 @@ public class Main {
             ParkingLotController parkingLotController = new ParkingLotController();
 
             while(commandString != null) {
+                if(commandString.length() == 0) {
+                    commandString = fileInput.next();
+                    continue;
+                }
+
                 String result = parkingLotController.executeCommand(commandString);
-//                System.out.println("Command " + commandString);
                 if(result != null) {
                     System.out.println(result);
                 }

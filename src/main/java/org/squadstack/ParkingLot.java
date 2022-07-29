@@ -63,7 +63,7 @@ public class ParkingLot {
         ParkedCar newCar = new ParkedCar(carNumber, driverAge);
 
         if(!addCarToCarNumberData(closestSlot, newCar)) {
-            System.out.println(slots);
+//            System.out.println(slots);
             return "Duplicate car number detected: " + carNumber;
         }
         addCarToAgeData(closestSlot, newCar);
@@ -86,7 +86,7 @@ public class ParkingLot {
         ParkedCar car = slots.get(slot);
 
         if(car == null) {
-            return "Slot already vacant";
+            return "Slot " + (slot+1) + " already vacant";
         }
 
         removeCarFromAgeData(car.getDriverAge(), slot);

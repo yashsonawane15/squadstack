@@ -1,0 +1,1 @@
+You can paste your tests in the input file in the root folder
