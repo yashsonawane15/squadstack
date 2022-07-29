@@ -5,18 +5,24 @@ import org.squadstack.DAO.FileInput;
 import java.io.FileNotFoundException;
 
 public class Main {
-    ParkingLotController parkingLot;
+
     public static void main(String[] args) {
 
-        String inputFileName = "";
+        String inputFileName = "input.txt";
 
         try{
             FileInput fileInput = new FileInput(inputFileName);
+            String commandString = fileInput.next();
+            ParkingLotController parkingLotController = new ParkingLotController();
 
-            String command = fileInput.next();
+            while(commandString != null) {
+                String result = parkingLotController.executeCommand(commandString);
+//                System.out.println("Command " + commandString);
+                if(result != null) {
+                    System.out.println(result);
+                }
 
-            while(command != null) {
-
+                commandString = fileInput.next();
             }
 
         } catch(FileNotFoundException fnfe) {

@@ -2,6 +2,9 @@ package org.squadstack.command;
 
 public class LeaveCommand implements Command {
     final int SLOT_INDEX = 1;
+
+
+
     int querySlot;
 
     @Override
@@ -18,5 +21,9 @@ public class LeaveCommand implements Command {
         }
 
         return true;
+    }
+
+    public int getQuerySlot() {
+        return querySlot;
     }
 }

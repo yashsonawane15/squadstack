@@ -11,6 +11,7 @@ public class ParkingLotController {
     final String GET_SLOT_BY_NUMBER = "Slot_number_for_car_with_number ";
     final String GET_NUMBERS_BY_AGE = "Vehicle_registration_number_for_driver_of_age";
     final String LEAVE = "Leave";
+    final String INVALID_COMMAND = "Command invalid";
 
     // Command objects
     CreateCommand createCommand = new CreateCommand();
@@ -20,51 +21,58 @@ public class ParkingLotController {
     GetNumbersByAgeCommand getNumbersByAgeCommand = new GetNumbersByAgeCommand();
     LeaveCommand leaveCommand = new LeaveCommand();
 
+    ParkingLot parkingLot = new ParkingLot();
 
-    public boolean executeCommand(String commandLine) {
+
+    public String executeCommand(String commandLine) {
         String[] components = commandLine.split(" ");
         String command = components[0];
 
         switch(command) {
             case CREATE:
                 if(!createCommand.parseCommandString(components)) {
-                    return false;
+                    return INVALID_COMMAND;
                 }
-                break;
+
+                return parkingLot.createParkingLot(createCommand.getLotSize());
 
             case PARK:
                 if(!parkCommand.parseCommandString(components)) {
-                    return false;
+                    return INVALID_COMMAND;
                 }
-                break;
+
+                return parkingLot.parkCar(parkCommand.getDriverAge(), parkCommand.getCarNumber());
 
             case GET_SLOTS_FOR_AGE:
                 if(!getSlotsByAgeCommand.parseCommandString(components)) {
-                    return false;
+                    return INVALID_COMMAND;
                 }
-                break;
+
+                return parkingLot.getSlotsByAge(getSlotsByAgeCommand.getQueryAge());
 
             case GET_SLOT_BY_NUMBER:
                 if(!getSlotByCarNumber.parseCommandString(components)) {
-                    return false;
+                    return INVALID_COMMAND;
                 }
                 break;
 
             case GET_NUMBERS_BY_AGE:
                 if(!getNumbersByAgeCommand.parseCommandString(components)) {
-                    return false;
+                    return INVALID_COMMAND;
                 }
                 break;
 
             case LEAVE:
                 if(!leaveCommand.parseCommandString(components)) {
-                    return false;
+                    return INVALID_COMMAND;
                 }
+
+                return parkingLot.leaveParkingLot(leaveCommand.getQuerySlot());
             default:
-                return false;
+                return INVALID_COMMAND;
         }
 
-        return false;
+        return null;
     }
 
 

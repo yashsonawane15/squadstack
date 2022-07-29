@@ -19,4 +19,8 @@ public class GetSlotsByAgeCommand implements Command {
         }
         return true;
     }
+
+    public int getQueryAge() {
+        return queryAge;
+    }
 }
