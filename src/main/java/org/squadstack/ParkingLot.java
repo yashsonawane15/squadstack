@@ -107,16 +107,12 @@ public class ParkingLot {
             return "No car parked with a driver of age " + queryAge;
         }
 
-        StringBuilder result = new StringBuilder();
-
-        result.append("Slots with drivers of age " + queryAge + ": ");
-
         Iterator<Integer> iterator = slotsOfAge.iterator();
 
         String slotsString = getCommaSeparatedNumbers(iterator, slotsOfAge.size());
-        result.append(slotsString);
 
-        return result.toString();
+
+        return slotsString;
     }
 
 
@@ -128,7 +124,7 @@ public class ParkingLot {
             return "No car with number " + queryCarNumber + " in the parking lot";
         }
 
-        return "Car with number " + queryCarNumber + " is in slot " + (carSlot+1);
+        return Integer.toString(carSlot+1);
     }
 
     public String getCarNumbersByAge(int queryAge) {
@@ -138,7 +134,7 @@ public class ParkingLot {
         result.append("Car Numbers with drivers of age " + queryAge + ": ");
 
         if(querySlots == null || querySlots.size() == 0) {
-            return "No cars present with a driver of age " + queryAge;
+            return "";
         }
 
         ArrayList<String> carNumbers = getCarNumbersFromSlots(querySlots);
