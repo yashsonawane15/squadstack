@@ -1,5 +1,5 @@
-compile = "javac -classpath .:target/dependency/* -d . $(find . -type f -name '*.java')"
-run = "java -classpath . :src/* Main"
+compile = "javac -classpath ./src/*:target/dependency/* -d . $(find . -type f -name '*.java')"
+run = "java -classpath target/classes org.squadstack.Main"
 hidden = ["**/*.class"]
 
 [packager]
